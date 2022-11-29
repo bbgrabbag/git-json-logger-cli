@@ -129,11 +129,12 @@ const getMetadata = async () => {
             handleError(err);
         }
     }
-    
+
     const user = await getUserName();
     const branch = await getCurrentBranch();
     const commit = await getCommitHash();
     const date = await getCommitDate();
+
     return {
         user,
         branch,
