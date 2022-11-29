@@ -3,7 +3,7 @@
 const childProcess = require('child_process');
 const fs = require('fs/promises');
 const path = require('path');
-const { execPromise, handleError, trimTrailingNewline } = require('./utils');
+const { execPromise, handleError, trimTrailingNewline, extractAttrFromLog } = require('./utils');
 const config = require('./config');
 const { readdirSync } = require('fs');
 
@@ -94,8 +94,10 @@ const validateGit = async () => {
 const getMetadata = async () => {
     const getUserName = async () => {
         try {
-            const user = await execPromise('git config --get user.name');
-            return trimTrailingNewline(user)
+            const username = trimTrailingNewline(await execPromise('git config --get user.name'));
+            const email = trimTrailingNewline(await execPromise('git config --get user.email'));
+            return `${username} <${email}>`
+
         } catch (err) {
             handleError(err);
         }
@@ -112,21 +114,31 @@ const getMetadata = async () => {
 
     const getCommitHash = async () => {
         try {
-            const hash = await execPromise(`git commit`)
-
+            const log = await execPromise(`git log --max-count=1`);
+            return extractAttrFromLog(log, 'commit');
         } catch (err) {
             handleError(err);
         }
     }
 
-    // commit hash
-    // commit date
-    // branch
+    const getCommitDate = async () => {
+        try {
+            const log = await execPromise(`git log --max-count=1`);
+            return new Date(extractAttrFromLog(log, 'Date')).toISOString();
+        } catch (err) {
+            handleError(err);
+        }
+    }
+    
     const user = await getUserName();
     const branch = await getCurrentBranch();
+    const commit = await getCommitHash();
+    const date = await getCommitDate();
     return {
         user,
-        branch
+        branch,
+        commit,
+        date
     }
 }
 

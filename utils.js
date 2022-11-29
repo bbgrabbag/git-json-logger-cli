@@ -12,10 +12,16 @@ const handleError = (err) => {
     console.log(err);
     process.exit(1);
 }
-const trimTrailingNewline = (str) => str.replace(/\n/, '')
+const trimTrailingNewline = (str) => str.replace(/\n/, '');
+const extractAttrFromLog = (log, attr) => {
+    const lines = log.split(`\n`);
+    const line = lines.find(line => line.includes(attr));
+    return line.split(' ').slice(1).join(' ').trim();
+}
 
 module.exports = {
     execPromise,
     handleError,
-    trimTrailingNewline
+    trimTrailingNewline,
+    extractAttrFromLog
 }
