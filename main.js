@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const childProcess = require('child_process');
 const fs = require('fs/promises');
 const path = require('path');
 const { execPromise, handleError, trimTrailingNewline, extractAttrFromLog } = require('./utils');
@@ -86,10 +85,7 @@ const validateGit = async () => {
     } catch (err) {
         handleError(err)
     }
-    // git folder
-    // git version
 }
-
 
 const getMetadata = async () => {
     const getUserName = async () => {

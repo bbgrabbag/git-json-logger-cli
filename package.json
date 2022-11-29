@@ -1,14 +1,14 @@
 {
-  "name": "git-logger",
+  "name": "quick-git-log",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "log": "git-log test"
+    "log": "quick-log test"
   },
   "bin": {
-    "git-log": "main.js"
+    "qg-log": "main.js"
   },
   "keywords": [],
   "author": "",
