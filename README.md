@@ -1,5 +1,7 @@
 # Git JSON Logger CLI
 
+##### [Release Notes](/changelog.md)
+
 ## Easily generate metadata file containing basic git repo information
 ---
 
