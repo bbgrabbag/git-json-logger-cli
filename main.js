@@ -126,16 +126,27 @@ const getMetadata = async () => {
         }
     }
 
+    const getRemotes = async () => {
+        try{
+            const remotes = await execPromise('git remote -v')
+            return remotes || [];
+        } catch(err){
+            handleError(err)
+        }
+    }
+
     const user = await getUserName();
     const branch = await getCurrentBranch();
     const commit = await getCommitHash();
     const date = await getCommitDate();
+    const remotes = await getRemotes();
 
     return {
         user,
         branch,
         commit,
-        date
+        date, 
+        remotes
     }
 }
 
