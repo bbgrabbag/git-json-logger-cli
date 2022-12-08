@@ -14,6 +14,19 @@
         - Date of last commit
         - Remote url's
 
+- It is recommended to put this script in your project's `package.json` as an npm script. It can then be used as part of a `pre-*` script as part of a React project for example:
+```json
+// package.json
+{
+    //...
+    "scripts": {
+        "git-logger": "git-logger",
+        // generate metadata file automatically before every build:
+        "prebuild": "git-logger --outfile my-git-metadata.json",
+        "build": "react-scripts build"
+    }
+}
+```
 > **Warning** 
 >
 > Make sure the project directory in question is a git repository, otherwise a script error will occur.
