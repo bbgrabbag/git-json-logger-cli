@@ -18,10 +18,18 @@ const extractAttrFromLog = (log, attr) => {
     const line = lines.find(line => line.includes(attr));
     return line.split(' ').slice(1).join(' ').trim();
 }
+const parseRemoteRepos = (str) => {
+    if (!str) return [];
+    return str.trim().split('\n').map(s => {
+        const [name, url] = s.split('\t');
+        return { name, url };
+    });
+}
 
 module.exports = {
     execPromise,
     handleError,
     trimTrailingNewline,
-    extractAttrFromLog
+    extractAttrFromLog,
+    parseRemoteRepos
 }

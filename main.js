@@ -2,7 +2,7 @@
 
 const fs = require('fs/promises');
 const path = require('path');
-const { execPromise, handleError, trimTrailingNewline, extractAttrFromLog } = require('./utils');
+const { execPromise, handleError, trimTrailingNewline, extractAttrFromLog, parseRemoteRepos } = require('./utils');
 const config = require('./config');
 const { readdirSync } = require('fs');
 
@@ -127,10 +127,10 @@ const getMetadata = async () => {
     }
 
     const getRemotes = async () => {
-        try{
+        try {
             const remotes = await execPromise('git remote -v')
-            return remotes || [];
-        } catch(err){
+            return parseRemoteRepos(remotes);
+        } catch (err) {
             handleError(err)
         }
     }
@@ -145,7 +145,7 @@ const getMetadata = async () => {
         user,
         branch,
         commit,
-        date, 
+        date,
         remotes
     }
 }

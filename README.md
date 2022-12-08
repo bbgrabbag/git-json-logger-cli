@@ -27,3 +27,24 @@ Option | Description | Default
 ------ | ----------- | ------- 
 `--outfile` | Name of metadata file to output. Will be placed in the directory defined for option `--outdir` | `git-metadata.json`
 `--outdir` | Name of directory for metadata file to be placed in. | directory of current process, `process.cwd()`
+
+#### Example Output
+```json
+// git-metadata.json
+{
+    "user": "John Doe <jdoe@email.com>",
+    "branch": "master",
+    "commit": "cc8e1242bf20a676d73f88024cf410b686e7c955",
+    "date": "2022-12-08T19:02:03.000Z",
+    "remotes": [
+        {
+            "name": "origin",
+            "url": "<url> (fetch)"
+        },
+        {
+            "name": "origin",
+            "url": "<url> (push)"
+        }
+    ]
+}
+```
