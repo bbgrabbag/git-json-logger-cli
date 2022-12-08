@@ -14,8 +14,9 @@
         - Date of last commit
         - Remote url's
 
-> **Warning**
-Make sure the directory in question contains a `.git` folder and is a git repository, otherwise a script error will occur.
+> **Warning** 
+>
+> Make sure the project directory in question is a git repository, otherwise a script error will occur.
 
 ### API Reference
 
@@ -23,8 +24,8 @@ Make sure the directory in question contains a `.git` folder and is a git reposi
 git-logger [--outdir <directory>] [--outfile <filename>]
 ```
 
-Option | Description | Default
------- | ----------- | ------- 
+Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+--- | --- | --- 
 `--outfile` | Name of metadata file to output. Will be placed in the directory defined for option `--outdir` | `git-metadata.json`
 `--outdir` | Name of directory for metadata file to be placed in. | directory of current process, `process.cwd()`
 
